@@ -8,13 +8,10 @@ app = Flask(__name__)
 
 @app.route("/get-article")
 def get_article():
+    print(all_articles[0][13])
     article_data = {
-        "title": all_articles[1][19],
-        "poster_link": all_articles[1][27],
-        "release_date": all_articles[1][13] or "N/A",
-        "duration": all_articles[1][15],
-        "rating": all_articles[1][20],
-        "overview": all_articles[1][9]
+        "title": all_articles[0][13],
+        "url": all_articles[0][12]
     }
     return jsonify({
         "data": article_data,
