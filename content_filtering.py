@@ -4,8 +4,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from ast import literal_eval
 
-# Reading articles.csv using pandas
-df = pd.read_csv('articles.csv')
+# Reading articles_en.csv using pandas
+df = pd.read_csv('articles_en.csv')
 
 # Removing NaN values from title column
 df = df[df['title'].notna()]
