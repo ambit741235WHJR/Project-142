@@ -8,10 +8,10 @@ app = Flask(__name__)
 
 @app.route("/get-article")
 def get_article():
-    print(all_articles[0][13])
     article_data = {
         "title": all_articles[0][13],
-        "url": all_articles[0][12]
+        "url": all_articles[0][12],
+        "total_events": all_articles[0][16]
     }
     return jsonify({
         "data": article_data,
@@ -42,11 +42,8 @@ def popular_articles():
     for article in output:
         _d = {
             "title": article[0],
-            "poster_link": article[1],
-            "release_date": article[2] or "N/A",
-            "duration": article[3],
-            "rating": article[4],
-            "overview": article[5]
+            "url": article[1],
+            "total_events": article[2]
         }
         article_data.append(_d)
     return jsonify({
@@ -58,7 +55,8 @@ def popular_articles():
 def recommended_articles():
     all_recommended = []
     for liked_article in liked_articles:
-        output = get_recommendations(liked_article[19])
+        print(liked_article)
+        output = get_recommendations(int(liked_article[5]))
         for data in output:
             all_recommended.append(data)
     import itertools
@@ -68,11 +66,8 @@ def recommended_articles():
     for recommended in all_recommended:
         _d = {
             "title": recommended[0],
-            "poster_link": recommended[1],
-            "release_date": recommended[2] or "N/A",
-            "duration": recommended[3],
-            "rating": recommended[4],
-            "overview": recommended[5]
+            "url": recommended[1],
+            "total_events": recommended[2]
         }
         article_data.append(_d)
     return jsonify({

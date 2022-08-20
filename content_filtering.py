@@ -36,4 +36,4 @@ def get_recommendations(contentId, cosine_sim=cosine_sim2):
     # Get the article indices
     article_indices = [i[0] for i in sim_scores]
     # Return the top 10 most similar movies and converting to a list
-    return df[['title', 'url', 'text', 'lang']].iloc[article_indices].values.tolist()
+    return df[['title', 'url', 'total_events']].iloc[article_indices].values.tolist()
